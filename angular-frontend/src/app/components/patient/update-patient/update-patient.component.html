@@ -1,0 +1,77 @@
+<div class="row row justify-content-center align-self-center">
+  <div style="width: 400px;" *ngIf="patient">
+    <h2>Update Doctor Details</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Patient Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="patient.name" name="name">
+      </div>
+
+      <div class="form-group">
+        <label for="entrydate">Entry Date</label>
+        <input type="date" class="form-control" id="entrydate" required [(ngModel)]="patient.entrydate" name="entrydate">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" class="form-control" id="dob" required [(ngModel)]="patient.dob" name="dob">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" class="form-control" id="age" required [(ngModel)]="patient.age" name="age">
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label><br>
+        <input type="radio"  id="male" [(ngModel)]="patient.gender" name="male" value=male>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" [(ngModel)]="patient.gender" name="female" value=female>
+        <label for="female">Female</label><br>
+      </div>
+
+      <div class="form-group">
+        <label for="occupation">Occupation</label>
+        <input type="occupation" class="form-control" id="occupation" required [(ngModel)]="patient.occupation" name="occupation">
+      </div>
+
+      <div class="form-group">
+        <label for="healthinsuranceno">Health Insurance No</label>
+        <input type="healthinsuranceno" class="form-control" id="healthinsuranceno" required [(ngModel)]="patient.healthinsuranceno" name="healthinsuranceno">
+      </div>
+
+      <div class="form-group">
+        <label for="healthcareprovider">Healthcare Provider</label>
+        <input type="healthcareprovider" class="form-control" id="healthcareprovider" required [(ngModel)]="patient.healthcareprovider" name="healthcareprovider">
+      </div>
+
+      <div class="form-group">
+        <label for="patientaddress">Patient Address</label>
+        <input type="patientaddress" class="form-control" id="patientaddress" required [(ngModel)]="patient.patientaddress" name="patientaddress">
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <input type="number" class="form-control" id="contact" required [(ngModel)]="patient.contact" name="contact">
+      </div>
+
+      <div class="form-group">
+        <label for="doctorid">Doctor ID</label>
+        <select name="doctorid" id="doctorid" [(ngModel)]="patient.patient_doctor.id"
+                class="form-control">
+          <option *ngFor="let doctor of doctors| async;"
+                  [value]=[doctor.id]>{{ doctor.doctorname }}
+          </option>
+          <option [value]="null">Not set</option>
+        </select>
+      </div>
+
+
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+
+    <br>
+    <br>
+    <button (click)="list()" class="btn btn-primary">Back to Patient List</button><br>
+  </div>
+</div>

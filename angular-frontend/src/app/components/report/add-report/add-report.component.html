@@ -1,0 +1,158 @@
+<div class="row row justify-content-center align-self-center">
+  <div [hidden]="submitted" style="width: 500px;" >
+    <h3 class = "text-center">Add Report Information</h3>
+      <div class="col-md-12">
+       <!-- <form [formGroup]="reportForm" (ngSubmit)="onSubmit()" #form="ngForm">-->
+          <form [formGroup]="reportForm" class="form" (ngSubmit)="onSubmit()" >
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Patient Id</span>
+            </div>
+            <select formControlName="report_patient_id" class="form-control">
+              <option *ngFor="let patient of patients| async;"
+                      [value]=[patient.id]>{{ patient.name }} [ {{ patient.dob | date:'dd.MM.yyyy' }} ]
+              </option>
+              <option value="" selected>Not set</option>
+            </select>
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Doctor Id</span>
+            </div>
+            <select formControlName="report_doctor_id" class="form-control">
+              <option *ngFor="let doctor of doctors| async;"
+                      [value]=[doctor.id]>{{ doctor.doctorname }} [ {{ doctor.hospital_name }} ]
+              </option>
+              <option value="" selected>Not set</option>
+            </select>
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Blood pressure</span>
+            </div>
+            <select formControlName="bloodpressure" class="form-control">
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Pulse rate</span>
+            </div>
+            <input formControlName="pulserate" type="number" class="form-control">
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Weight</span>
+            </div>
+            <input formControlName="weight" type="text" class="form-control">
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">History</span>
+            </div>
+            <input formControlName="patienthistory" type="text" class="form-control">
+          </div>
+
+          <!-- Input Fields --->
+
+          <div class="input-group mt-3 mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="width: 145px;">Follow up doctor</span>
+            </div>
+            <select formControlName="report_followupdoctor_id" class="form-control">
+              <option *ngFor="let doctor of doctors| async;"
+                      [value]=[doctor.id]>{{ doctor.doctorname }} [ {{ doctor.hospital_name }} ]
+              </option>
+              <option value="" selected>Not set</option>
+            </select>
+          </div>
+
+            <!-- Medicine -->
+         <!-- <h5 class="text-center">Medicines:</h5>
+          <div formArrayName="medicines">
+            <div *ngFor="let medicine of medicines.controls; let i = index" class="form-group mt-3 mb-3">
+              <div formGroupName="{{ i }}" class="input-group">
+                <select formControlName="drugname" type="text" class="form-control">
+                  <option *ngFor="let medicin of medicins| async;"
+                          [value]=[medicin.drugname]>{{ medicin.drugname }}
+                  </option>
+                </select>
+                <select formControlName="dosage" type="text" class="form-control">
+                  <option *ngFor="let medicin of medicins| async;"
+                          [value]=[medicin.dosage]>{{ medicin.dosage }}
+                  </option>
+                </select>
+                <input placeholder="Unit" formControlName="unit" type="text" class="form-control">
+
+                <button type="button" class="btn btn-secondary" (click)="removeMedicins(i)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          &lt;!&ndash; add Medicine Button &ndash;&gt;
+          <div class="col btn-group">
+            <button (click)="addMedicins()" type="button" class="btn btn-dark m-1">Add Medicins<i
+              class="fas fa-plus ml-1"></i>
+            </button>
+          </div>
+-->
+          <!-- Add diets here -->
+          <!--<h5 class="text-center">Diets:</h5>
+          <div formArrayName="diets">
+            <div *ngFor="let diet of diets.controls; let i = index" class="form-group mt-3 mb-3">
+              <div formGroupName="{{ i }}" class="input-group">
+                <select formControlName="dietname" type="text" class="form-control">
+                <option *ngFor="let diet of dietes| async;"
+                        [value]=[diet.name]>{{ diet.name }}
+                </option>
+                </select>
+                <select formControlName="description" type="text" class="form-control">
+                  <option *ngFor="let diet of dietes| async;"
+                          [value]=[diet.description]>{{ diet.description }} [{{ diet.name }}]
+                  </option>
+                </select>
+                <button type="button" class="btn btn-secondary" (click)="removeDiets(i)">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          &lt;!&ndash; add Diets Button &ndash;&gt;
+          <div class="col btn-group">
+            <button (click)="addDiets()" type="button" class="btn btn-dark m-1">Add Diets<i
+              class="fas fa-plus ml-1"></i>
+            </button>
+          </div>
+-->
+            <input type="button" class="btn btn-primary" id="btnPrint" onclick="window.print();" value="Print PDF" />
+              <button type="submit" class="btn btn-primary" >Save Report</button>
+              <button type="button" class="btn btn-danger ml-2" (click)="cancelAdd()">Cancel</button>
+
+        </form>
+
+        </div>
+    <div [hidden]="!submitted">
+      <h4>You submitted successfully!</h4>
+    </div>
+      </div>
+    </div>
+

@@ -1,0 +1,77 @@
+<div class="row row justify-content-center align-self-center">
+  <div [hidden]="submitted" style="width: 500px;" >
+    <h3>Add Patient Information</h3>
+    <form [formGroup]="patientForm" class="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Patient Name</label>
+        <input  id="name" formControlName="name" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="entrydate">Entry Date</label>
+        <input type="date" id="entrydate" formControlName="entrydate" class="form-control" dataformatas="yyyy-MM-dd">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" formControlName="dob" class="form-control" dataformatas="yyyy-MM-dd">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number"  id="age" formControlName="age" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label><br>
+        <input type="radio"  id="male" value=male formControlName="gender" class="form-control">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" formControlName=gender class="form-control" value=female>
+        <label for="female">Female</label><br>
+      </div>
+
+      <div class="form-group">
+        <label for="occupation">Occupation</label>
+        <input type="occupation" id="occupation" formControlName="occupation" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="healthinsuranceno">Health Insurance No</label>
+        <input type="text" id="healthinsuranceno"  formControlName="healthinsuranceno" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="healthcareprovider">Healthcare Provider</label>
+        <input type="text" id="healthcareprovider" formControlName="healthcareprovider" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="patientaddress">Patient Address</label>
+        <input type="text" id="patientaddress" formControlName="patientaddress" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <p>+880<input type="number" id="contact" formControlName="contact" class="form-control">
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="doctorid">Doctor ID</label>
+        <select id="doctorid" formControlName="patient_doctor_id" class="form-control">
+        <option *ngFor="let doctor of doctors| async;"
+                [value]=[doctor.id]>{{ doctor.doctorname }} [{{ doctor.hospital_name}}]
+        </option>
+        <option [value]="null">Not set</option>
+      </select>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+  </div>
+
+  <div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+  </div>
+</div>

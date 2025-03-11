@@ -1,0 +1,38 @@
+<div class="container" align="center">
+    <h3>Advance Search Page for Patients</h3>
+    <!-- Search form -->
+  <form class="form-inline d-flex md-form form-sm active-pink active-pink-2 mt-2"
+        [formGroup]="searchForm" (ngSubmit)="OnSubmit(searchForm.value)" >
+    <b>Paitent Search By Name and Date of Birth</b><br>
+    <input class="form-control mr-sm-2" type="text" placeholder="Enter Patient Name" name="patient_name" formControlName="patient_name">
+    <input class="form-control mr-sm-2" type="Date" placeholder="Enter Patient DOB" dob="patient_dob" formControlName="patient_dob">
+    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+  </form>
+  </div>
+
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Patient Name</th>
+      <th>Contact Number</th>
+      <th>Doctor ID</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr >
+      <td>{{patient.name}}</td>
+      <td>{{patient.contact}}</td>
+      <td>{{patient.patient_doctor.id}}</td>
+      <td>
+        <button (click)="patientDetails(patient.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+

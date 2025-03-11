@@ -1,0 +1,30 @@
+<div class="row row justify-content-center align-self-center">
+  <div *ngIf="doctor">
+    <h2>Doctor Details</h2>
+    <div>
+      <label><b>Doctor Name </b></label>
+      <p>{{doctor.doctorname}}</p>
+    </div>
+    <div>
+      <label><b>Doctor Address </b></label>
+      <p>{{doctor.doctor_address}}</p>
+    </div>
+    <div>
+      <label><b>Hospital Name </b></label>
+      <p>{{doctor.hospital_name}}</p>
+    </div>
+    <div>
+      <label><b>About </b></label>
+      <p>{{doctor.about}}</p>
+    </div>
+    <div>
+      <label><b>Profile Picture :  </b></label>
+      {{doctor.profile_picture}}
+    </div>
+
+    <br>
+    <br>
+    <button (click)="updateLink()" class="btn btn-info">Update</button> <span></span>
+    <button (click)="list()" class="btn btn-primary">Back to Doctor List</button><br>
+  </div>
+</div>
