@@ -134,48 +134,7 @@ public class PatientController {
       }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
       }
-       /* System.out.println("Patient is " + patient);
-        try {
-            Patient _patient = new Patient(
-                    patient.getName(),
-                    patient.getEntrydate(),
-                    patient.getDob(),
-                    patient.getAge(),
-                    patient.getGender(),
-                    patient.getOccupation(),
-                    patient.getHealthinsuranceno(),
-                    patient.getHealthcareprovider(),
-                    patient.getPatientaddress(),
-                    patient.getContact()
-            );*/
 
-            /*_patient.builder().name(patient.getName())
-                 //   dob(patient.getDob())
-                    .age(patient.getAge()).
-                   // entrydate(patient.getEntrydate()).
-                    gender(patient.getGender()).
-                    occupation(patient.getOccupation())
-                    .healthinsuranceno(patient.getHealthinsuranceno())
-                    .healthcareprovider(patient.getHealthcareprovider())
-                    .patientaddress(patient.getPatientaddress())
-                    .contact(patient.getContact()).build();*/
-
-           /* Doctor doctor = doctorRepository.findById(doctorid).orElse(null);
-            if (doctor != null) {
-                doctor.addPatients(_patient);
-               // _patient.setPatient_doctor(doctor);
-                Patient patient1 =  patientRepository.save(_patient);
-                doctor.addPatients(_patient);
-                doctorRepository.save(doctor);
-
-            }
-           // patientService.createPatient(_patient);
-            //_patient = patientRepository.save(_patient);
-            System.out.println("Patient is after " + _patient);
-            return new ResponseEntity<>(_patient, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }*/
     }
 
     @PutMapping("/patients/{id}")
