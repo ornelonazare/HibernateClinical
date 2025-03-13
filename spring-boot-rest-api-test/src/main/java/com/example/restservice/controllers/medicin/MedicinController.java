@@ -47,6 +47,17 @@ public class MedicinController {
         }
     }
 
+    @GetMapping("/medicins/report/{reportid}")
+    public ResponseEntity<List<Medicin>> getMedicinByReportId(@PathVariable("reportid") int reportid) {
+        List<Medicin> medicinData = medicinRepository.getMedicinByReportID(reportid);
+
+        if (medicinData != null) {
+            return new ResponseEntity<>(medicinData, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/medicins")
     public ResponseEntity<Medicin> createMedicin(@RequestBody Medicin medicin) {
         try {

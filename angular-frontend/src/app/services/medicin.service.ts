@@ -32,6 +32,9 @@ export class MedicinService {
     return this.http.get(`${ baseUrl }/${ id }`);
   }
 
+  getMedicinByReportId(id: any): Observable<any> {
+    return this.http.get(`${ baseUrl }/report/${ id }`);
+  }
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }

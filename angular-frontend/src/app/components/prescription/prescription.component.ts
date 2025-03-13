@@ -66,18 +66,9 @@ export class PrescriptionComponent implements OnInit {
     patienthistory: '',
     report_followupdoctor: 0
   };
-  diet: Diet = {
-    dietid: 0,
-    description: '',
-    name: '',
-  }
+  diet: Diet[] = [];
 
-  medicin: Medicin = {
-    medicinid: 0,
-    dosage: '',
-    drugname: '',
-    unit: ''
-  }
+  medicin: Medicin[] = [];
   currentDate = new Date();
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -158,16 +149,16 @@ export class PrescriptionComponent implements OnInit {
             this.followUpDoctor = followUpDoctorData;
           }
         );
-        this.dietService.get(this.reportId).subscribe(
-          (diet: Diet) => {
-            this.diet = diet;
+      /*  this.dietService.getDietsByReportId(this.reportId).subscribe(
+          (diet: Diet[]) => {
+            this.report.diets = diet;
           }
         );
-        this.medicinService.get(this.reportId).subscribe(
-          (medicin: Medicin) => {
-            this.medicin = medicin;
+        this.medicinService.getMedicinByReportId(this.reportId).subscribe(
+          (medicin: Medicin[]) => {
+            this.report.medicins = medicin;
           }
-        );
+        );*/
         this.reportService.getAllergies(this.reportId).subscribe(
           (allergies: string[]) => {
             this.report.allergies = allergies;

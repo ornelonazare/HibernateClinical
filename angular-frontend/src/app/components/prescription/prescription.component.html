@@ -49,13 +49,6 @@
             <td colspan="5">0{{ patient.contact }}</td>
           </tr>
 
-          <tr style="background-color: #E0FFFF;">
-            <th style="background-color: #FEFCFF;" colspan="1">
-              <b>Diagnosed with:</b></th>
-            <td colspan="5"><textarea type="text" rows="4" class="form-control" id="usr"></textarea>
-            </td>
-          </tr>
-
           <tr style="background-color: #FBF6D9;">
             <th style="background-color: #FEFCFF;"><b>Blood Pressure: </b></th>
             <td>{{ report.bloodpressure }}</td>
@@ -86,7 +79,7 @@
             <th colspan="1" class="text-center"><b>Drug Unit</b></th>
           </tr>
           <tr *ngFor="let medicin of report.medicins; let i = index">
-            <td colspan="1" class="text-center"><{{ i + 1 }}</td>
+            <td colspan="1" class="text-center">{{ i + 1 }}</td>
             <td colspan="2" class="text-center">{{ medicin.drugname }}</td>
             <td colspan="1" class="text-center">{{ medicin.dosage }}</td>
             <td colspan="1" class="text-center">{{ medicin.unit }}</td>

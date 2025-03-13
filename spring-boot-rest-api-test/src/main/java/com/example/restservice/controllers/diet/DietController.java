@@ -45,6 +45,16 @@ public class DietController {
         }
     }
 
+    @GetMapping("/diets/report/{reportid}")
+    public ResponseEntity<List<Diet>> getDietByReportId(@PathVariable("reportid") int reportid) {
+        List<Diet> dietData = dietRepository.getDietsByReportID(reportid);
+
+        if (dietData != null) {
+            return new ResponseEntity<>(dietData, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @PostMapping("/diets")
     public ResponseEntity<Diet> createDiet(@RequestBody Diet diet) {
         try {
