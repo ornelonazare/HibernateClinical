@@ -127,7 +127,14 @@ public class PatientController {
 
     @PostMapping("/patients/{doctorid}")
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient, @PathVariable("doctorid") int doctorid) {
-        System.out.println("Patient is " + patient);
+
+      try {
+          Patient _patient = patientService.createPatient(patient, doctorid);
+          return new ResponseEntity<>(_patient, HttpStatus.CREATED);
+      }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+       /* System.out.println("Patient is " + patient);
         try {
             Patient _patient = new Patient(
                     patient.getName(),
@@ -140,7 +147,7 @@ public class PatientController {
                     patient.getHealthcareprovider(),
                     patient.getPatientaddress(),
                     patient.getContact()
-            );
+            );*/
 
             /*_patient.builder().name(patient.getName())
                  //   dob(patient.getDob())
@@ -153,7 +160,7 @@ public class PatientController {
                     .patientaddress(patient.getPatientaddress())
                     .contact(patient.getContact()).build();*/
 
-            Doctor doctor = doctorRepository.findById(doctorid).orElse(null);
+           /* Doctor doctor = doctorRepository.findById(doctorid).orElse(null);
             if (doctor != null) {
                 doctor.addPatients(_patient);
                // _patient.setPatient_doctor(doctor);
@@ -168,7 +175,7 @@ public class PatientController {
             return new ResponseEntity<>(_patient, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        }*/
     }
 
     @PutMapping("/patients/{id}")
