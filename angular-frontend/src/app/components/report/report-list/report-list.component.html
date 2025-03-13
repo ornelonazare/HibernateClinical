@@ -15,9 +15,9 @@
       <tr *ngFor="let report of reportList ; let i = index" style="cursor: pointer; "
         (click)="reportDetails(report.id)">
         <th scope="row">{{ i  }}</th>
-        <td>{{ getPatientName(report.report_patient.id ) }}</td>
-        <td>{{ getPatientDob(report.report_patient.id ) | date:'dd.MM.yyyy' }}</td>
-        <td>0{{ getPatientContact(report.report_patient.id) }}</td>
+        <td>{{ getPatientName(report.report_patient ) }}</td>
+        <td>{{ getPatientDob(report.report_patient ) | date:'dd.MM.yyyy' }}</td>
+        <td>0{{ getPatientContact(report.report_patient) }}</td>
 
         <td>
           <button (click)="updateReport(report.id)" class="btn btn-warning" style="margin-left: 10px">Update</button>

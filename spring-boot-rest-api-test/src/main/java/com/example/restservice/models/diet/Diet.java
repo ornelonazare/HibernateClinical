@@ -26,11 +26,8 @@ public class Diet implements Serializable{
     private String name;
     private String description;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="report_diet_id")
-    @JsonIgnore
-    private Report report_diet;
+    @Column(name="report_diet_id")
+    private Integer report_diet;
 
 
     public Diet(String name, String description) {

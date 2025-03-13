@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,4 +50,6 @@ public class PatientRepositoryImpl extends BaseRepositoryImpl<Patient, Integer> 
                 .where(patient.name.contains(name).and(patient.dob.eq(dob)))
                 .fetch();
     }
+
+
 }

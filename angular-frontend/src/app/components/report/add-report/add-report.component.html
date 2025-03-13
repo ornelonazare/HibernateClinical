@@ -85,64 +85,89 @@
             </select>
           </div>
 
+
+            <div formArrayName="allergies">
+              <div *ngFor="let _ of allergies.controls; let i = index" class="form-group mt-3 mb-3">
+                <div [formGroupName]="i">
+                  <input placeholder="allergie" formControlName="name" type="text" class="form-control">
+
+                  <button type="button" class="btn btn-secondary" (click)="removeAllergie(i)">
+                    remove Allergie<i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            &lt;!&ndash; add Allergies Button &ndash;&gt;
+            <div class="col btn-group">
+              <button (click)="addAllergies()" type="button" class="btn btn-dark m-1">Add Allergie<i
+                class="fas fa-plus ml-1"></i>
+              </button>
+            </div>
+
+            <div formArrayName="disabilities">
+              <div *ngFor="let _ of disabilities.controls; let i = index" class="form-group mt-3 mb-3">
+                <div [formGroupName]="i">
+                  <input placeholder="disabilitie" formControlName="name" type="text" class="form-control">
+
+                  <button type="button" class="btn btn-secondary" (click)="removedisabilitie(i)">
+                    remove disabilities<i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            &lt;!&ndash; add disabilities Button &ndash;&gt;
+            <div class="col btn-group">
+              <button (click)="addDisabilitie()" type="button" class="btn btn-dark m-1">Add disabilities<i class="fas fa-times"></i>
+                <i
+                class="fas fa-plus ml-1"></i>
+              </button>
+            </div>
+
+
             <!-- Medicine -->
-         <!-- <h5 class="text-center">Medicines:</h5>
+          <h5 class="text-center">Medicines:</h5>
           <div formArrayName="medicines">
             <div *ngFor="let medicine of medicines.controls; let i = index" class="form-group mt-3 mb-3">
-              <div formGroupName="{{ i }}" class="input-group">
-                <select formControlName="drugname" type="text" class="form-control">
-                  <option *ngFor="let medicin of medicins| async;"
-                          [value]=[medicin.drugname]>{{ medicin.drugname }}
-                  </option>
-                </select>
-                <select formControlName="dosage" type="text" class="form-control">
-                  <option *ngFor="let medicin of medicins| async;"
-                          [value]=[medicin.dosage]>{{ medicin.dosage }}
-                  </option>
-                </select>
+              <div [formGroupName]="i" class="input-group">
+
+                <input placeholder="drugname" formControlName="drugname" type="text" class="form-control">
+                <input placeholder="dosage" formControlName="dosage" type="text" class="form-control">
                 <input placeholder="Unit" formControlName="unit" type="text" class="form-control">
 
                 <button type="button" class="btn btn-secondary" (click)="removeMedicins(i)">
-                  <i class="fas fa-times"></i>
+                  remove Medicin<i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
           </div>
-          &lt;!&ndash; add Medicine Button &ndash;&gt;
+          <!-- add Medicine Button -->
           <div class="col btn-group">
             <button (click)="addMedicins()" type="button" class="btn btn-dark m-1">Add Medicins<i
               class="fas fa-plus ml-1"></i>
             </button>
           </div>
--->
+
           <!-- Add diets here -->
-          <!--<h5 class="text-center">Diets:</h5>
+          <h5 class="text-center">Diets:</h5>
           <div formArrayName="diets">
             <div *ngFor="let diet of diets.controls; let i = index" class="form-group mt-3 mb-3">
-              <div formGroupName="{{ i }}" class="input-group">
-                <select formControlName="dietname" type="text" class="form-control">
-                <option *ngFor="let diet of dietes| async;"
-                        [value]=[diet.name]>{{ diet.name }}
-                </option>
-                </select>
-                <select formControlName="description" type="text" class="form-control">
-                  <option *ngFor="let diet of dietes| async;"
-                          [value]=[diet.description]>{{ diet.description }} [{{ diet.name }}]
-                  </option>
-                </select>
+              <div [formGroupName]="i" class="input-group">
+
+                <input placeholder="name" formControlName="name" type="text" class="form-control">
+                <input placeholder="description" formControlName="description" type="text" class="form-control">
+
                 <button type="button" class="btn btn-secondary" (click)="removeDiets(i)">
-                  <i class="fas fa-times"></i>
+                  remove Diet<i class="fas fa-times"></i>
                 </button>
               </div>
             </div>
           </div>
-          &lt;!&ndash; add Diets Button &ndash;&gt;
+          <!-- add Diets Button -->
           <div class="col btn-group">
             <button (click)="addDiets()" type="button" class="btn btn-dark m-1">Add Diets<i
               class="fas fa-plus ml-1"></i>
             </button>
           </div>
--->
             <input type="button" class="btn btn-primary" id="btnPrint" onclick="window.print();" value="Print PDF" />
               <button type="submit" class="btn btn-primary" >Save Report</button>
               <button type="button" class="btn btn-danger ml-2" (click)="cancelAdd()">Cancel</button>

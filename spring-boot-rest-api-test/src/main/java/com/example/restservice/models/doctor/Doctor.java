@@ -34,18 +34,21 @@ public class Doctor implements Serializable{
     private String about;
     private String profile_picture;
 
-    @OneToMany(mappedBy = "patient_doctor",
-            cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
+    @JoinColumn(name="patient_doctor_id")
     private List<Patient> patients = new ArrayList<>();
 
-    @OneToMany(mappedBy = "report_doctor",
-            cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
+    @JoinColumn(name = "report_doctor_id")
     private List<Report> report_doctors = new ArrayList<>();
 
-    @OneToMany(mappedBy = "report_followupdoctor",
-            cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
+    @JoinColumn(name = "report_followupdoctor_id")
     @JsonIgnore
     private List<Report> report_followupdoctors = new ArrayList<>();
 
@@ -58,8 +61,16 @@ public class Doctor implements Serializable{
         this.profile_picture = profile_picture;
     }
 
-    public void addPatient(Patient patient) {
+    public void addPatients(Patient patient) {
         patients.add(patient);
-        patient.setPatient_doctor(this);
     }
+
+    public void addReport_doctors(Report report) {
+        report_doctors.add(report);
+    }
+
+    public void addReport_followupdoctors(Report report) {
+        report_followupdoctors.add(report);
+    }
+
 }

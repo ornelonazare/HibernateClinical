@@ -5,7 +5,7 @@ import { Report } from '../../../classes/report';
 import { ReportService } from '../../../services/report.service';
 import { PatientService } from '../../../services/patient.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Medicine} from "../../../classes/medicine";
+import {Medicin} from "../../../classes/medicin";
 import {Diet} from "../../../classes/diet";
 
 declare module 'rxjs';
@@ -22,17 +22,17 @@ export class ReportListComponent implements OnInit, OnDestroy {
   reportList: Report[] = [];
   reportByNameDob: Report = {
     id: 0,
-    report_patient: {id :0 },
-    report_doctor: {id :0 },
+    report_patient: 0 ,
+    report_doctor: 0 ,
     bloodpressure: '',
     pulserate: 0,
     weight: 0,
     allergies: [] as string[],
     disabilities: [] as string[],
-    medicines: [] as Medicine[],
+    medicins: [] as Medicin[],
     diets: [] as Diet[],
     patienthistory: '',
-    report_followupdoctor: {id :0 }
+    report_followupdoctor: 0
   };
   subscription: Subscription | undefined;
 

@@ -28,7 +28,7 @@ export class UpdatePatientComponent implements OnInit {
     healthcareprovider: '', // Use camelCase
     patientaddress: '', // Use camelCase
     contact: 0,
-    patient_doctor: {id :0 },
+    patient_doctor: 0,
     // Use camelCase
   };
   doctors: Observable<Doctor[]> | undefined;
@@ -50,7 +50,7 @@ export class UpdatePatientComponent implements OnInit {
       healthcareprovider: '', // Use camelCase
       patientaddress: '', // Use camelCase
       contact: 0,
-      patient_doctor: {id :0 },
+      patient_doctor: 0,
       // Use camelCase
     };
 
@@ -79,7 +79,7 @@ export class UpdatePatientComponent implements OnInit {
           healthcareprovider: '', // Use camelCase
           patientaddress: '', // Use camelCase
           contact: 0,
-          patient_doctor: {id :0 },
+          patient_doctor: 0 ,
           // Use camelCase
         };
         this.list();

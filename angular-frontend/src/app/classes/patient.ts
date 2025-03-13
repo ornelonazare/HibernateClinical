@@ -11,7 +11,7 @@ export type Patient = {
   healthcareprovider: string; // Use camelCase
   patientaddress: string; // Use camelCase
   contact: number;
-  patient_doctor : { "id" :number}; // Use camelCase
+  patient_doctor : number; // Use camelCase
 }
  /* constructor(
     id: number,

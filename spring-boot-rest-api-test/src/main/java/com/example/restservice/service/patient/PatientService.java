@@ -16,12 +16,12 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
     public void createPatient(Patient patient) {
-        System.out.println("Patients ID " + patient.getPatient_doctor().getId());
-        Doctor doctor = doctorRepository.findById(patient.getPatient_doctor().getId()).orElse(null);
-        if (doctor != null) {
-            doctor.addPatient(patient);
+        /*System.out.println("Patients ID " + patient.getPatient_doctor().getId());*/
+       /* Doctor doctor = doctorRepository.findById(patient.getPatient_doctor().getId()).orElse(null);*/
+       /* if (doctor != null) {
+            doctor.addPatients(patient);
             doctorRepository.save(doctor);
-        }
+        }*/
 
     }
 }

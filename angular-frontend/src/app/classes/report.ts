@@ -1,19 +1,19 @@
 import { Diet } from './diet';
-import { Medicine } from './medicine';
+import { Medicin } from './medicin';
 
 export type Report = {
   id?: number;
-  report_patient: { "id" :number};
-  report_doctor: { "id" :number};
+  report_patient: number;
+  report_doctor: number;
   bloodpressure: string;
   pulserate: number;
   weight: number;
   allergies: string[];
   disabilities: string[];
-  medicines: Medicine[];
+  medicins: Medicin[];
   diets: Diet[];
   patienthistory: string;
-  report_followupdoctor: { "id" :number};
+  report_followupdoctor: number;
 }
 /*    constructor(
       id: number,

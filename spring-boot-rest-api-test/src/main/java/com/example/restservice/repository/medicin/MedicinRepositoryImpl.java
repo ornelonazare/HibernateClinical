@@ -1,5 +1,6 @@
 package com.example.restservice.repository.medicin;
 
+import com.example.restservice.models.diet.Diet;
 import com.example.restservice.models.medicin.Medicin;
 import com.example.restservice.repository.common.BaseRepositoryImpl;
 import jakarta.persistence.EntityManager;
@@ -19,6 +20,13 @@ public class MedicinRepositoryImpl extends BaseRepositoryImpl<Medicin, Integer> 
     @Override
     public List<Medicin> findAll() {
         return super.findAll();
+    }
+
+
+    public List<Medicin> getMedicinByReportID(Integer reportid) {
+        return (List<Medicin>) queryFactory.selectFrom(medicin)
+                .where(medicin.report_medicin.eq(reportid))
+                .fetch();
     }
 
 }

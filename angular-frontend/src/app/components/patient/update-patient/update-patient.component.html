@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label for="doctorid">Doctor ID</label>
-        <select name="doctorid" id="doctorid" [(ngModel)]="patient.patient_doctor.id"
+        <select name="doctorid" id="doctorid" [(ngModel)]="patient.patient_doctor"
                 class="form-control">
           <option *ngFor="let doctor of doctors| async;"
                   [value]=[doctor.id]>{{ doctor.doctorname }}

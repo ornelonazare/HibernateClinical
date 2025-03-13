@@ -21,7 +21,7 @@ export class PatientDetailsComponent implements OnInit {
     healthcareprovider: '', // Use camelCase
     patientaddress: '', // Use camelCase
     contact: 0,
-    patient_doctor: {id :0 },
+    patient_doctor: 0,
     // Use camelCase
   };
   id: number = 0;

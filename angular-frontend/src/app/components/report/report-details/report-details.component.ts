@@ -6,7 +6,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {DoctorService} from "../../../services/doctor.service";
 import {PatientService} from "../../../services/patient.service";
 import {ReportService} from "../../../services/report.service";
-import {Medicine} from "../../../classes/medicine";
+import {Medicin} from "../../../classes/medicin";
 import {MedicinService} from "../../../services/medicin.service";
 import {Diet} from "../../../classes/diet";
 
@@ -48,22 +48,22 @@ export class ReportDetailsComponent implements OnInit {
     healthcareprovider: '', // Use camelCase
     patientaddress: '', // Use camelCase
     contact: 0,
-    patient_doctor: {id :0 },
+    patient_doctor: 0,
     // Use camelCase
   };
   report: Report = {
     id: 0,
-    report_patient: {id :0 },
-    report_doctor: {id :0 },
+    report_patient: 0 ,
+    report_doctor: 0 ,
     bloodpressure: '',
     pulserate: 0,
     weight: 0,
     allergies: [] as string[],
     disabilities: [] as string[],
-    medicines: [] as Medicine[],
+    medicins: [] as Medicin[],
     diets: [] as Diet[],
     patienthistory: '',
-    report_followupdoctor: {id :0 }
+    report_followupdoctor: 0
   };
 
   constructor(private route: ActivatedRoute, private router: Router,
@@ -81,19 +81,19 @@ export class ReportDetailsComponent implements OnInit {
             // get report data
             this.report = data;
             // get doctor data
-            this.doctorService.get(this.report.report_doctor.id).subscribe(
+            this.doctorService.get(this.report.report_doctor).subscribe(
               (doctorData: any) => {
                 this.doctor = doctorData;
               }
             );
             // get follow up doctor data
-            this.doctorService.get(this.report.report_followupdoctor.id).subscribe(
+            this.doctorService.get(this.report.report_followupdoctor).subscribe(
               (followUpDoctorData: any) => {
                 this.followUpDoctor = followUpDoctorData;
               }
             );
             // get patient data
-            this.patientService.get(this.report.report_patient.id).subscribe(
+            this.patientService.get(this.report.report_patient).subscribe(
               (patientData: any) => {
                 this.patient = patientData;
               }

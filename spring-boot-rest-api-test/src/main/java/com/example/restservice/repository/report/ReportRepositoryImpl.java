@@ -4,7 +4,9 @@ import com.example.restservice.models.reports.Report;
 import com.example.restservice.repository.common.BaseRepositoryImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -16,9 +18,15 @@ public class ReportRepositoryImpl extends BaseRepositoryImpl<Report, Integer> im
 
     @Override
     public Report findByPatientID(Integer patientid) {
-        return queryFactory.select(report)
+        return /*queryFactory.select(report)
                 .from(report).innerJoin(report.report_patient, patient)
                 .where(patient.id.eq(patientid))
-                .fetchOne();
+                .fetchOne();*/ null;
+    }
+
+    @Override
+    @Query("SELECT r.allergies FROM Report r WHERE r.id = ?1")
+    public List<String> getAllergiesByReportID(Integer reportid) {
+        return null;
     }
 }

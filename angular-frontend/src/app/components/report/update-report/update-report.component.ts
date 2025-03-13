@@ -8,7 +8,7 @@ import {PatientService} from "../../../services/patient.service";
 import {DoctorService} from "../../../services/doctor.service";
 import {ReportService} from "../../../services/report.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Medicine} from "../../../classes/medicine";
+import {Medicin} from "../../../classes/medicin";
 import {MedicinService} from "../../../services/medicin.service";
 import {Diet} from "../../../classes/diet";
 import {DietService} from "../../../services/diet.service";
@@ -24,23 +24,23 @@ export class UpdateReportComponent implements OnInit {
 
   report: Report = {
     id: 0,
-    report_patient: {id :0 },
-    report_doctor: {id :0 },
+    report_patient: 0 ,
+    report_doctor: 0 ,
     bloodpressure: '',
     pulserate: 0,
     weight: 0,
     allergies: [] as string[],
     disabilities: [] as string[],
-    medicines: [] as Medicine[],
+    medicins: [] as Medicin[],
     diets: [] as Diet[],
     patienthistory: '',
-    report_followupdoctor: {id :0 }
+    report_followupdoctor: 0
   };
   reportID: number = 0;
   patientID: number = 0;
   patients: Observable<Patient[]> | undefined;
   doctors: Observable<Doctor[]> | undefined;
-  medicins: Observable<Medicine[]> | undefined;
+  medicines: Observable<Medicin[]> | undefined;
   dietes: Observable<Diet[]> | undefined;
 
   reportForm = this.fb.group({
@@ -49,7 +49,7 @@ export class UpdateReportComponent implements OnInit {
     bloodpressure: '',
     pulserate:0,
     weight: 0,
-    medicines: this.fb.array([ this.buildMedicine() ]),
+    medicins: this.fb.array([ this.buildMedicin() ]),
     allergies: this.fb.array([
       this.fb.control('')
     ]),
@@ -74,7 +74,7 @@ export class UpdateReportComponent implements OnInit {
 
   ngOnInit() {
     this.dietes = this.dietService.getAll();
-    this.medicins = this.medicinService.getAll();
+    this.medicines = this.medicinService.getAll();
     this.doctors = this.doctorService.getAll();
     this.patients = this.patientService.getAll();
     this.reportID = this.route.snapshot.params['id'];
@@ -82,14 +82,14 @@ export class UpdateReportComponent implements OnInit {
       (reportData: any) => {
         this.report = reportData;
         this.reportForm.patchValue({
-          report_patient_id: this.report.report_patient.id,
-          report_doctor_id: this.report.report_doctor.id,
+          report_patient_id: this.report.report_patient,
+          report_doctor_id: this.report.report_doctor,
           bloodpressure: this.report.bloodpressure,
           pulserate: this.report.pulserate,
           weight: this.report.weight,
           patienthistory: this.report.patienthistory,
-          report_followupdoctor_id: this.report.report_followupdoctor.id,
-          medicines: this.report.medicines,
+          report_followupdoctor_id: this.report.report_followupdoctor,
+          medicins: this.report.medicins,
           diets: this.report.diets
         });
       }
@@ -97,13 +97,13 @@ export class UpdateReportComponent implements OnInit {
   }
 
   update() {
-    this.report.report_patient.id = this.reportForm.value.report_patient_id;
-    this.report.report_doctor.id = this.reportForm.value.report_doctor_id;
+    this.report.report_patient = this.reportForm.value.report_patient_id;
+    this.report.report_doctor = this.reportForm.value.report_doctor_id;
     this.report.bloodpressure = this.reportForm.value.bloodpressure;
     this.report.pulserate = this.reportForm.value.pulserate;
     this.report.weight = this.reportForm.value.weight;
     this.report.patienthistory = this.reportForm.value.patienthistory;
-    this.report.report_followupdoctor.id = this.reportForm.value.report_followupdoctor_id;
+    this.report.report_followupdoctor = this.reportForm.value.report_followupdoctor_id;
 
     this.reportService
       .update(this.reportID, this.report).subscribe((reportData: any) => {
@@ -126,23 +126,23 @@ export class UpdateReportComponent implements OnInit {
     this.router.navigate([ 'reports' ]);
   }
 
-  get medicines(): FormArray {
-    return this.reportForm.get('medicines') as FormArray;
+  get medicins(): FormArray {
+    return this.reportForm.get('medicins') as FormArray;
   }
 
   addMedicins() {
-    this.medicines.push(this.buildMedicine());
+    this.medicins.push(this.buildMedicin());
   }
 
   removeMedicins(i: number) {
-    this.medicines.removeAt(i);
+    this.medicins.removeAt(i);
   }
 
-  private buildMedicine(): FormGroup {
+  private buildMedicin(): FormGroup {
     return this.fb.group({
-      drugname: [ '', Validators.required ],
-      unit: [ '', Validators.required ],
-      dosage: [ '', Validators.required ],
+      drugname: '',
+      unit: '',
+      dosage: '',
     });
   }
 

@@ -29,11 +29,9 @@ public class Medicin {
     private String unit;
     private String dosage;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="report_medicin_id")
-    @JsonIgnore
-    private Report report_medicin;
+    @Column(name="report_medicin_id")
+    private Integer report_medicin;
+
 
     public Medicin(String drugname, String unit, String dosage) {
         this.drugname = drugname;

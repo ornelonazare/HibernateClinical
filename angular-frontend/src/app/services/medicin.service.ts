@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Medicine} from "../classes/medicine";
+import {Medicin} from "../classes/medicin";
 
 const baseUrl = 'http://localhost:8080/api/medicins';
 
@@ -24,8 +24,8 @@ export class MedicinService {
   }
   // Alert System
 
-  getAll(): Observable<Medicine[]> {
-    return this.http.get<Medicine[]>(baseUrl);
+  getAll(): Observable<Medicin[]> {
+    return this.http.get<Medicin[]>(baseUrl);
   }
 
   get(id: any): Observable<any> {

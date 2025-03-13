@@ -32,8 +32,17 @@ export class ReportService {
     return this.http.get(`${ baseUrl }/${ id }`);
   }
 
-  create(data: Report): Observable<any> {
-    return this.http.post(baseUrl, data);
+  getAllergies(id: any): Observable<any> {
+    return this.http.get(`${ baseUrl }/allergies/${ id }`);
+  }
+
+  getDisabilities(id: any): Observable<any> {
+    return this.http.get(`${ baseUrl }/disabilities/${ id }`);
+  }
+
+  create(data: any): Observable<any> {
+    return this.http.post(`${ baseUrl }`, data);
+
   }
 
   update(id: any, data: any): Observable<any> {

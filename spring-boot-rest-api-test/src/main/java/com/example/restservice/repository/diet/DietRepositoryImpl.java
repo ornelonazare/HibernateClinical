@@ -21,4 +21,11 @@ public class DietRepositoryImpl extends BaseRepositoryImpl<Diet, Integer> implem
         return super.findAll();
     }
 
+    @Override
+    public List<Diet> getDietsByReportID(Integer reportid) {
+        return (List<Diet>) queryFactory.selectFrom(diet)
+                .where(diet.report_diet.eq(reportid))
+                .fetch();
+    }
+
 }

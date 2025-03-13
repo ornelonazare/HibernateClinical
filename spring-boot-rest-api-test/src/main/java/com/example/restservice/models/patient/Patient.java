@@ -16,6 +16,7 @@ import lombok.experimental.SuperBuilder;
 import java.io.Serializable;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,20 +46,23 @@ public class Patient implements Serializable {
     private String patientaddress;
     private Integer contact;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    /*@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="patient_doctor_id")
     private Doctor patient_doctor;
-    //private Integer doctorid;
+    //private Integer doctorid;*/
+    @Column(name="patient_doctor_id")
+    private Integer patient_doctor;
 
     @OneToOne(mappedBy = "patient_invoice",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JsonIgnore
     private Invoice invoice_patient;
 
-    @OneToMany(mappedBy = "report_patient",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
     @JsonIgnore
-    private List<Report> report_patients;
+    @JoinColumn(name = "report_patient_id")
+    private List<Report> report_patients = new ArrayList<>();
 
 
     public Patient(String name,LocalDate entrydate ,LocalDate dob, Integer age, String gender, String occupation, String healthinsuranceno, String healthcareprovider, String patientaddress, Integer contact) {
@@ -74,4 +78,7 @@ public class Patient implements Serializable {
         this.contact = contact;
     }
 
+    public void addReport_patients(Report report) {
+        report_patients.add(report);
+    }
 }

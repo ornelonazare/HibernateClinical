@@ -7,9 +7,12 @@ import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ReportRepository extends BaseRepository<Report, Integer> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Report findByPatientID(Integer patientid);
+
+    List<String> getAllergiesByReportID(Integer reportid);
 }

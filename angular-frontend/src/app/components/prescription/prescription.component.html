@@ -85,7 +85,7 @@
             <th colspan="2" class="text-center"><b>Drug Dosage</b></th>
             <th colspan="1" class="text-center"><b>Drug Unit</b></th>
           </tr>
-          <tr *ngFor="let medicin of report.medicines; let i = index">
+          <tr *ngFor="let medicin of report.medicins; let i = index">
             <td colspan="1" class="text-center"><{{ i + 1 }}</td>
             <td colspan="2" class="text-center">{{ medicin.drugname }}</td>
             <td colspan="1" class="text-center">{{ medicin.dosage }}</td>

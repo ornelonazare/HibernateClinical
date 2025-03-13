@@ -93,17 +93,17 @@
           </div>
 
           <!-- Medicine -->
-          <h5 class="text-center">Medicines:</h5>
-          <div formArrayName="medicines">
-            <div *ngFor="let medicine of medicines.controls; let i = index" class="form-group mt-3 mb-3">
-              <div formGroupName="{{ i }}" class="input-group">
+          <h5 class="text-center">Medicins:</h5>
+          <div formArrayName="medicins">
+            <div *ngFor="let medicin of medicins.controls; let i = index" class="form-group mt-3 mb-3">
+              <div [formGroupName]="i" class="input-group">
                 <select formControlName="drugname" type="text" class="form-control">
-                  <option *ngFor="let medicin of medicins| async;"
+                  <option *ngFor="let medicin of medicines| async;"
                           [value]=[medicin.drugname]>{{ medicin.drugname }}
                   </option>
                 </select>
                 <select formControlName="dosage" type="text" class="form-control">
-                  <option *ngFor="let medicin of medicins| async;"
+                  <option *ngFor="let medicin of medicines| async;"
                           [value]=[medicin.dosage]>{{ medicin.dosage }}
                   </option>
                 </select>

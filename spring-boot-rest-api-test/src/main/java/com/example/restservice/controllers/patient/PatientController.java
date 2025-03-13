@@ -44,7 +44,8 @@ public class PatientController {
             List<Patient> patients = new ArrayList<Patient>();
 
             if (name == null) {
-                    patientRepository.findAll().forEach(patients::add);
+                    //patientRepository.findAll().forEach(patients::add);
+                patients = patientRepository.findAll();
             }else {
                 patientRepository.findByNameContaining(name).forEach(patients::add);
             }
@@ -58,6 +59,7 @@ public class PatientController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping("/patients/{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") int id) {
@@ -123,8 +125,8 @@ public class PatientController {
         }
     }
 
-    @PostMapping("/patients")
-    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
+    @PostMapping("/patients/{doctorid}")
+    public ResponseEntity<Patient> createPatient(@RequestBody Patient patient, @PathVariable("doctorid") int doctorid) {
         System.out.println("Patient is " + patient);
         try {
             Patient _patient = new Patient(
@@ -150,12 +152,15 @@ public class PatientController {
                     .healthcareprovider(patient.getHealthcareprovider())
                     .patientaddress(patient.getPatientaddress())
                     .contact(patient.getContact()).build();*/
-            System.out.println("Patients ID " + patient.getPatient_doctor().getId());
-            Doctor doctor = doctorRepository.findById(patient.getPatient_doctor().getId()).orElse(null);
+
+            Doctor doctor = doctorRepository.findById(doctorid).orElse(null);
             if (doctor != null) {
-                doctor.addPatient(_patient);
-                _patient.setPatient_doctor(doctor);
-                patientRepository.save(_patient);
+                doctor.addPatients(_patient);
+               // _patient.setPatient_doctor(doctor);
+                Patient patient1 =  patientRepository.save(_patient);
+                doctor.addPatients(_patient);
+                doctorRepository.save(doctor);
+
             }
            // patientService.createPatient(_patient);
             //_patient = patientRepository.save(_patient);

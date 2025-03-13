@@ -28,7 +28,7 @@ export class AddPatientComponent implements OnInit {
     healthcareprovider: '', // Use camelCase
     patientaddress: '', // Use camelCase
     contact: 0,
-    patient_doctor: {id :0 },
+    patient_doctor :0 ,
     // Use camelCase
   };
   submitted = false;
@@ -70,7 +70,7 @@ export class AddPatientComponent implements OnInit {
       healthcareprovider: '', // Use camelCase
       patientaddress: '', // Use camelCase
       contact: 0,
-      patient_doctor:{id :0 },
+      patient_doctor:0 ,
       // Use camelCase
     };
   }
@@ -87,7 +87,7 @@ export class AddPatientComponent implements OnInit {
     this.patient.healthcareprovider = this.patientForm.value.healthcareprovider;
     this.patient.patientaddress = this.patientForm.value.patientaddress;
     this.patient.contact = this.patientForm.value.contact;
-    this.patient.patient_doctor.id = this.patientForm.value.patient_doctor_id;
+    this.patient.patient_doctor = this.patientForm.value.patient_doctor_id;
 
     console.log(this.patient);
     this.patientService
@@ -105,7 +105,7 @@ export class AddPatientComponent implements OnInit {
           healthcareprovider: '', // Use camelCase
           patientaddress: '', // Use camelCase
           contact: 0,
-          patient_doctor: {id :0 },
+          patient_doctor: 0,
           // Use camelCase
         };
         console.log(this.patient);

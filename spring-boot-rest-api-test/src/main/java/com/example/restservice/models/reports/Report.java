@@ -7,6 +7,8 @@ import com.example.restservice.models.medicin.Medicin;
 
 import com.example.restservice.models.patient.Patient;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import jakarta.persistence.*;
@@ -31,18 +33,20 @@ public class Report implements Serializable {
     private int id;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    /*@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "report_patient_id")
-    private Patient report_patient;
-    //private Integer patientid;
+    private Patient report_patient;*/
+    @Column(name="report_patient_id")
+    private Integer report_patient;
     //private int patientid;
 
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+   /* @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "report_doctor_id")
-    private Doctor report_doctor;
-    //private Integer doctorid;
+    private Doctor report_doctor;*/
+    @Column(name="report_doctor_id")
+    private Integer report_doctor;
     //private int doctorid;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate createddate = LocalDate.from(DateTimeFormatter.ISO_LOCAL_DATE.parse("2018-03-09"));
@@ -51,30 +55,34 @@ public class Report implements Serializable {
     private Double weight;
 
     @ElementCollection
+    @JsonIgnore
     private List<String> allergies = new ArrayList<>();
 
+
     @ElementCollection
+    @JsonIgnore
     private List<String> disabilities = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "report_medicin",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
+    @JoinColumn(name="report_medicin_id")
     private List<Medicin> medicins = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "report_diet",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(
+            cascade = CascadeType.ALL, orphanRemoval = false)
+    @JoinColumn(name="report_diet_id")
     private List<Diet> diets = new ArrayList<>();
 
     private String patienthistory;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+   /* @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "report_followupdoctor_id")
-    private Doctor report_followupdoctor;
-    //private Integer followupdoctorid;
+    private Doctor report_followupdoctor;*/
+    @Column(name="report_followupdoctor_id")
+    private Integer report_followupdoctor;
     //private String followupdoctorid;
 
     public Report( String bloodpressure, Double pulserate, Double weight, List<String> allergies, List<String> disabilities, String patienthistory) {
@@ -89,45 +97,19 @@ public class Report implements Serializable {
 
     }
 
-    public List<Medicin> getMedicins() {
-        return medicins;
+    public void addAllergy(String allergy) {
+        this.allergies.add(allergy);
     }
 
-    public void setMedicins(List<Medicin> medicins) {
-        this.medicins = medicins;
+    public void addDisabilities(String disabilitie) {
+        this.disabilities.add(disabilitie);
     }
 
-    // add convenience methods for bi-directional relationship
-
-    public void add(Medicin tempMedicin) {
-
-        if (medicins == null) {
-            medicins = new ArrayList<>();
-        }
-
-        medicins.add(tempMedicin);
-
-        tempMedicin.setReport_medicin(this);
+    public void addDiet( Diet diet) {
+        this.diets.add(diet);
     }
 
-    public List<Diet> getDiets() {
-        return diets;
-    }
-
-    public void setDiets(List<Diet> diets) {
-        this.diets = diets;
-    }
-
-    // add convenience methods for bi-directional relationship
-
-    public void add(Diet tempDiet) {
-
-        if (diets == null) {
-            diets = new ArrayList<>();
-        }
-
-        diets.add(tempDiet);
-
-        tempDiet.setReport_diet(this);
+    public void addMedicin(Medicin medicin) {
+        this.medicins.add(medicin);
     }
 }

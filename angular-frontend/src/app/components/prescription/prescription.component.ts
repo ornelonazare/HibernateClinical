@@ -6,8 +6,10 @@ import { ReportService } from '../../services/report.service';
 import { Doctor } from '../../classes/doctor';
 import { Patient } from '../../classes/patient';
 import { Report } from '../../classes/report';
-import {Medicine} from "../../classes/medicine";
+import {Medicin} from "../../classes/medicin";
 import {Diet} from "../../classes/diet";
+import {DietService} from "../../services/diet.service";
+import {MedicinService} from "../../services/medicin.service";
 
 @Component({
   selector: 'app-prescription',
@@ -47,29 +49,43 @@ export class PrescriptionComponent implements OnInit {
     healthcareprovider: '', // Use camelCase
     patientaddress: '', // Use camelCase
     contact: 0,
-    patient_doctor: {id :0 },
+    patient_doctor: 0 ,
     // Use camelCase
   };
   report: Report = {
     id: 0,
-    report_patient: {id :0 },
-    report_doctor: {id :0 },
+    report_patient: 0 ,
+    report_doctor: 0 ,
     bloodpressure: '',
     pulserate: 0,
     weight: 0,
     allergies: [] as string[],
     disabilities: [] as string[],
-    medicines: [] as Medicine[],
+    medicins: [] as Medicin[],
     diets: [] as Diet[],
     patienthistory: '',
-    report_followupdoctor: {id :0 }
+    report_followupdoctor: 0
   };
+  diet: Diet = {
+    dietid: 0,
+    description: '',
+    name: '',
+  }
+
+  medicin: Medicin = {
+    medicinid: 0,
+    dosage: '',
+    drugname: '',
+    unit: ''
+  }
   currentDate = new Date();
 
   constructor(private route: ActivatedRoute, private router: Router,
               private doctorService: DoctorService,
               private patientService: PatientService,
-              private reportService: ReportService) {
+              private reportService: ReportService,
+              private dietService: DietService,
+              private medicinService: MedicinService) {
   }
 
   ngOnInit(): void {
@@ -103,23 +119,23 @@ export class PrescriptionComponent implements OnInit {
       healthcareprovider: '', // Use camelCase
       patientaddress: '', // Use camelCase
       contact: 0,
-      patient_doctor: {id :0 },
+      patient_doctor: 0 ,
       // Use camelCase
     };
     this.report =
     {
       id: 0,
-      report_patient: {id :0 },
-      report_doctor: {id :0 },
+      report_patient: 0 ,
+      report_doctor: 0 ,
       bloodpressure: '',
       pulserate: 0,
       weight: 0,
       allergies: [] as string[],
       disabilities: [] as string[],
-      medicines: [] as Medicine[],
+      medicins: [] as Medicin[],
       diets: [] as Diet[],
       patienthistory: '',
-      report_followupdoctor: {id :0 }
+      report_followupdoctor: 0
     }
     this.currentDate = new Date();
 
@@ -127,19 +143,39 @@ export class PrescriptionComponent implements OnInit {
     this.reportService.get(this.reportId).subscribe(
       (reportData: Report) => {
         this.report = reportData;
-        this.patientService.get(this.report.report_patient.id).subscribe(
+        this.patientService.get(this.report.report_patient).subscribe(
           (patientData: Patient) => {
             this.patient = patientData;
           }
         );
-        this.doctorService.get(this.report.report_doctor.id).subscribe(
+        this.doctorService.get(this.report.report_doctor).subscribe(
           (doctorData: Doctor) => {
             this.doctor = doctorData;
           }
         );
-        this.doctorService.get(this.report.report_followupdoctor.id).subscribe(
+        this.doctorService.get(this.report.report_followupdoctor).subscribe(
           (followUpDoctorData: Doctor) => {
             this.followUpDoctor = followUpDoctorData;
+          }
+        );
+        this.dietService.get(this.reportId).subscribe(
+          (diet: Diet) => {
+            this.diet = diet;
+          }
+        );
+        this.medicinService.get(this.reportId).subscribe(
+          (medicin: Medicin) => {
+            this.medicin = medicin;
+          }
+        );
+        this.reportService.getAllergies(this.reportId).subscribe(
+          (allergies: string[]) => {
+            this.report.allergies = allergies;
+          }
+        );
+        this.reportService.getDisabilities(this.reportId).subscribe(
+          (disabilities: string[]) => {
+            this.report.disabilities = disabilities;
           }
         );
       }

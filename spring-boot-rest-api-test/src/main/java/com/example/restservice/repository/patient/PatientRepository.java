@@ -22,4 +22,7 @@ public interface PatientRepository extends BaseRepository<Patient, Integer> {
     Optional<Patient> findByNameContainingAndDob(String name, LocalDate dob);
 
     List<Patient> findByNameContainingAndDobDSL(String name, LocalDate dob);
+
+
+
 }

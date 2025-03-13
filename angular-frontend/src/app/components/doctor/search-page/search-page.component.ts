@@ -27,7 +27,7 @@ export class SearchPageComponent implements OnInit {
   healthcareprovider: '', // Use camelCase
   patientaddress: '', // Use camelCase
   contact: 0,
-  patient_doctor: {id :0 }, // Use camelCase
+  patient_doctor: 0, // Use camelCase
 };
 
   searchForm: any;
@@ -53,7 +53,7 @@ export class SearchPageComponent implements OnInit {
       healthcareprovider: '', // Use camelCase
       patientaddress: '', // Use camelCase
       contact: 0,
-      patient_doctor:{id :0 },
+      patient_doctor: 0,
       // Use camelCase
     };
   }
