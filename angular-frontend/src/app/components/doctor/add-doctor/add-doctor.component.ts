@@ -56,7 +56,8 @@ export class AddDoctorComponent implements OnInit {
         console.log(this.doctor);
         this.gotoList();
       },
-      (error: any) => console.log(error));
+      (error: any) => {
+        console.log(error)});
   }
 
   onSubmit() {

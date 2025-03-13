@@ -118,10 +118,10 @@ public class PatientController {
     public ResponseEntity<Patient> postByPatientNameandDob(@PathVariable("name") String name, @PathVariable("dob") String dob) {
         List<Patient> patientData = patientRepository.findByNameContainingAndDobDSL(name, LocalDate.parse(dob));
 
-        if (patientData != null) {
+        if (patientData != null && patientData.size() > 0) {
             return new ResponseEntity<Patient>(patientData.get(0), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
     }
 

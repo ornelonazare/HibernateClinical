@@ -69,9 +69,13 @@ export class SearchPageComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.patient = data;
-        console.log(data);
+        console.log(this.patient);
+
+
       },
-      (error: any) => console.log(error)
+      (error: any) => {
+        if(error.status == 404){ alert("Patient not found");}
+        console.log(error);}
     );
     //console.log(this.patientService.findByPatientNameDob(data1));
   }
@@ -79,5 +83,6 @@ export class SearchPageComponent implements OnInit {
   patientDetails(id: number): void {
     this.router.navigate(['patientDetails', id]);
   }
+
 }
-''
+
