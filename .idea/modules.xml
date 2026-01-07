@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/HibernateClinical.iml" filepath="$PROJECT_DIR$/.idea/HibernateClinical.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-rest-api-test/rest-service.iml" filepath="$PROJECT_DIR$/spring-boot-rest-api-test/rest-service.iml" />
     </modules>
   </component>
 </project>
